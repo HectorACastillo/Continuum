@@ -1,0 +1,6 @@
+devel_space: /home/hector/Documents/Continuum/catkin_ws/src/continuum/devel
+install: false
+install_space: /home/hector/Documents/Continuum/catkin_ws/src/continuum/install
+profile: default
+source_space: /home/hector/Documents/Continuum/catkin_ws/src/continuum/src
+workspace: /home/hector/Documents/Continuum/catkin_ws/src/continuum
