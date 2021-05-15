@@ -3,37 +3,12 @@
 import rospy
 from geometry_msgs.msg import Pose, PoseStamped
 import time
-
+import geometry_msgs
+import tf2_ros
 
 base_top_pose = None
-# base_top_pose = Pose()
-# base_top_pose.position.x = 0
-# base_top_pose.position.y = 0
-# base_top_pose.position.z = 0
-# base_top_pose.orientation.w = 0
-# base_top_pose.orientation.x = 0
-# base_top_pose.orientation.y = 0
-# base_top_pose.orientation.z = 0
-
 base_left_pose = None
-# base_left_pose = Pose()
-# base_left_pose.position.x = 0
-# base_left_pose.position.y = 0
-# base_left_pose.position.z = 0
-# base_left_pose.orientation.w = 0
-# base_left_pose.orientation.x = 0
-# base_left_pose.orientation.y = 0
-# base_left_pose.orientation.z = 0
-
 base_right_pose = None
-# base_right_pose = Pose()
-# base_right_pose.position.x = 0
-# base_right_pose.position.y = 0
-# base_right_pose.position.z = 0
-# base_right_pose.orientation.w = 0
-# base_right_pose.orientation.x = 0
-# base_right_pose.orientation.y = 0
-# base_right_pose.orientation.z = 0
 
 
 def base_top_callback(data):
@@ -55,9 +30,6 @@ def continuum_base_tracker():
     rospy.Subscriber("/aruco_base_left/pose", PoseStamped, base_left_callback)
     rospy.Subscriber("/aruco_base_right/pose", PoseStamped, base_right_callback)
 
-    # spin() simply keeps python from exiting until this node is stopped
-    # rospy.spin()
-
     pub = rospy.Publisher('/continuum_base_pose', PoseStamped, queue_size=10)
     rospy.init_node('contimuum_base_tracker', anonymous=True)
     rate = rospy.Rate(10) # 10hz
@@ -78,9 +50,29 @@ def continuum_base_tracker():
             # base_pose.header.stamp.nsecs = time.time_ns()
             seq += 1
     
-            rospy.loginfo(base_pose)
+            # rospy.loginfo(base_pose)
             pub.publish(base_pose)
+            handle_base_pose(base_pose)
+
         rate.sleep()
+
+def handle_base_pose(base_pose):
+    
+    br = tf2_ros.TransformBroadcaster()
+    t = geometry_msgs.msg.TransformStamped()
+
+    t.header.stamp = rospy.Time.now()
+    t.header.frame_id = base_pose.header.frame_id
+    t.child_frame_id = "continuum_base_frame"
+    t.transform.translation.x = base_pose.pose.position.x
+    t.transform.translation.y = base_pose.pose.position.y
+    t.transform.translation.z = base_pose.pose.position.z
+    t.transform.rotation.x = base_pose.pose.orientation.x
+    t.transform.rotation.y = base_pose.pose.orientation.y
+    t.transform.rotation.z = base_pose.pose.orientation.z
+    t.transform.rotation.w = base_pose.pose.orientation.w
+
+    br.sendTransform(t)
 
 
 if __name__ == '__main__':

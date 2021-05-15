@@ -1,0 +1,8 @@
+prefix=/home/hector/Documents/Continuum/catkin_ws/devel
+
+Name: continuum
+Description: Description of continuum
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

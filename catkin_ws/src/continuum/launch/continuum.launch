@@ -1,7 +1,7 @@
 <launch>
 
-    <node pkg="continuum" type="continuum_base_tracker.py" name="continuum_base_tracker"/>
-    <node pkg="continuum" type="continuum_end_tracker.py" name="continuum_end_tracker"/>
+    <node pkg="continuum" type="continuum_base_tracker.py" name="continuum_base_tracker" output="screen"/>
+    <node pkg="continuum" type="continuum_end_tracker.py" name="continuum_end_tracker" output="screen"/>
     
 
 </launch>

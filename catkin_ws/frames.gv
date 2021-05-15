@@ -1,0 +1,11 @@
+digraph G {
+"stereo_gazebo_left_camera_optical_frame" -> "aruco_top_marker_frame"[label=" Broadcaster: /aruco_base_top\nAverage rate: 16.251\nBuffer length: 4.923\nMost recent transform: 1620150881.4\nOldest transform: 1620150876.47\n"];
+"stereo_gazebo_left_camera_optical_frame" -> "aruco_right_marker_frame"[label=" Broadcaster: /aruco_base_right\nAverage rate: 16.454\nBuffer length: 4.923\nMost recent transform: 1620150881.4\nOldest transform: 1620150876.47\n"];
+"stereo_gazebo_left_camera_optical_frame" -> "aruco_left_marker_frame"[label=" Broadcaster: /aruco_base_left\nAverage rate: 10.812\nBuffer length: 1.85\nMost recent transform: 1620150881.17\nOldest transform: 1620150879.32\n"];
+"stereo_gazebo_left_camera_optical_frame" -> "continuum_base_frame"[label=" Broadcaster: /continuum_base_tracker\nAverage rate: 10.203\nBuffer length: 4.901\nMost recent transform: 1620150881.46\nOldest transform: 1620150876.56\n"];
+"stereo_gazebo_left_camera_optical_frame" -> "aruco_end_marker_frame"[label=" Broadcaster: /aruco_end\nAverage rate: 10.429\nBuffer length: 4.698\nMost recent transform: 1620150881.11\nOldest transform: 1620150876.41\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1620150881.55"[ shape=plaintext ] ;
+}->"stereo_gazebo_left_camera_optical_frame";
+}

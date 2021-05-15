@@ -1,0 +1,8 @@
+prefix=/home/hector/Documents/Continuum/catkin_ws/devel
+
+Name: aruco
+Description: Description of aruco
+Version: 2.1.1
+Cflags: -I/home/hector/Documents/Continuum/catkin_ws/src/aruco_ros/aruco/include
+Libs: -L${prefix}/lib -laruco
+Requires: 

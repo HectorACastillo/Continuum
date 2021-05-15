@@ -1,0 +1,2 @@
+aruco_ros/aruco:aruco_ros/aruco_msgs:aruco_ros/aruco_ros:continuum:openhand_node:usb_cam
+-DCATKIN_DEVEL_PREFIX=/home/hector/Documents/Continuum/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/hector/Documents/Continuum/catkin_ws/install -G Unix Makefiles
