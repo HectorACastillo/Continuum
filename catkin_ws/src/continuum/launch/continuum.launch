@@ -2,7 +2,9 @@
 
     <node pkg="continuum" type="continuum_base_tracker.py" name="continuum_base_tracker" output="screen"/>
     <node pkg="continuum" type="continuum_end_tracker.py" name="continuum_end_tracker" output="screen"/>
-    
+    <node pkg="continuum" name="continuumNode" type="continuum_node.py" output="screen">
+        <rosparam command="load" file="$(find continuum)/param/parameters.yaml"/>
+    </node>
 
 </launch>
 

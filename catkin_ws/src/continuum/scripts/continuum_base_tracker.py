@@ -41,7 +41,7 @@ def continuum_base_tracker():
             base_pose.header.frame_id = base_top_pose.header.frame_id
 
             base_pose.pose.position.x = (base_top_pose.pose.position.x+base_left_pose.pose.position.x+base_right_pose.pose.position.x)/3
-            base_pose.pose.position.y = (base_left_pose.pose.position.y+base_right_pose.pose.position.y)/2
+            base_pose.pose.position.y = (base_left_pose.pose.position.y+base_right_pose.pose.position.y)/2 - 0.1
             base_pose.pose.position.z = (base_top_pose.pose.position.z+base_left_pose.pose.position.z+base_right_pose.pose.position.z)/3 + 0.108
             base_pose.pose.orientation = base_top_pose.pose.orientation
 

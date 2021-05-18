@@ -1,0 +1,5 @@
+servo_port: '/dev/ttyUSB0'
+motor_assignments: [2,3,4]
+dyn_model: 'RX'
+natural_length: 0.94 # meters
+run_tuning: False

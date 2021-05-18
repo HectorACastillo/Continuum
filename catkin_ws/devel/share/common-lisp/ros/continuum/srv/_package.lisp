@@ -1,0 +1,20 @@
+(cl:defpackage continuum-srv
+  (:use )
+  (:export
+   "GOTO"
+   "<GOTO-REQUEST>"
+   "GOTO-REQUEST"
+   "<GOTO-RESPONSE>"
+   "GOTO-RESPONSE"
+   "MOTORSTATES"
+   "<MOTORSTATES-REQUEST>"
+   "MOTORSTATES-REQUEST"
+   "<MOTORSTATES-RESPONSE>"
+   "MOTORSTATES-RESPONSE"
+   "RESET"
+   "<RESET-REQUEST>"
+   "RESET-REQUEST"
+   "<RESET-RESPONSE>"
+   "RESET-RESPONSE"
+  ))
+

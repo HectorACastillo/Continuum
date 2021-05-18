@@ -3,6 +3,6 @@ prefix=/home/hector/Documents/Continuum/catkin_ws/devel
 Name: continuum
 Description: Description of continuum
 Version: 1.0.0
-Cflags: 
+Cflags: -I/home/hector/Documents/Continuum/catkin_ws/devel/include
 Libs: -L${prefix}/lib 
-Requires: 
+Requires: aruco_ros openhand_node roscpp rospy std_msgs usb_cam message_runtime

@@ -56,50 +56,6 @@ CMAKE_BINARY_DIR = /home/hector/Documents/Continuum/catkin_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -111,6 +67,16 @@ install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -134,6 +100,40 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -167,19 +167,243 @@ depend:
 	cd /home/hector/Documents/Continuum/catkin_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+continuum/CMakeFiles/continuum_genlisp.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_genlisp.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_genlisp.dir/rule
+
+# Convenience name for target.
+continuum_genlisp: continuum/CMakeFiles/continuum_genlisp.dir/rule
+
+.PHONY : continuum_genlisp
+
+# fast build rule for target.
+continuum_genlisp/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_genlisp.dir/build.make continuum/CMakeFiles/continuum_genlisp.dir/build
+.PHONY : continuum_genlisp/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_gencpp.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_gencpp.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_gencpp.dir/rule
+
+# Convenience name for target.
+continuum_gencpp: continuum/CMakeFiles/continuum_gencpp.dir/rule
+
+.PHONY : continuum_gencpp
+
+# fast build rule for target.
+continuum_gencpp/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_gencpp.dir/build.make continuum/CMakeFiles/continuum_gencpp.dir/build
+.PHONY : continuum_gencpp/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_generate_messages_lisp.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_generate_messages_lisp.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+continuum_generate_messages_lisp: continuum/CMakeFiles/continuum_generate_messages_lisp.dir/rule
+
+.PHONY : continuum_generate_messages_lisp
+
+# fast build rule for target.
+continuum_generate_messages_lisp/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_generate_messages_lisp.dir/build.make continuum/CMakeFiles/continuum_generate_messages_lisp.dir/build
+.PHONY : continuum_generate_messages_lisp/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/_continuum_generate_messages_check_deps_Reset.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/_continuum_generate_messages_check_deps_Reset.dir/rule
+.PHONY : continuum/CMakeFiles/_continuum_generate_messages_check_deps_Reset.dir/rule
+
+# Convenience name for target.
+_continuum_generate_messages_check_deps_Reset: continuum/CMakeFiles/_continuum_generate_messages_check_deps_Reset.dir/rule
+
+.PHONY : _continuum_generate_messages_check_deps_Reset
+
+# fast build rule for target.
+_continuum_generate_messages_check_deps_Reset/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/_continuum_generate_messages_check_deps_Reset.dir/build.make continuum/CMakeFiles/_continuum_generate_messages_check_deps_Reset.dir/build
+.PHONY : _continuum_generate_messages_check_deps_Reset/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_generate_messages_cpp.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_generate_messages_cpp.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+continuum_generate_messages_cpp: continuum/CMakeFiles/continuum_generate_messages_cpp.dir/rule
+
+.PHONY : continuum_generate_messages_cpp
+
+# fast build rule for target.
+continuum_generate_messages_cpp/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_generate_messages_cpp.dir/build.make continuum/CMakeFiles/continuum_generate_messages_cpp.dir/build
+.PHONY : continuum_generate_messages_cpp/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_generate_messages.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_generate_messages.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_generate_messages.dir/rule
+
+# Convenience name for target.
+continuum_generate_messages: continuum/CMakeFiles/continuum_generate_messages.dir/rule
+
+.PHONY : continuum_generate_messages
+
+# fast build rule for target.
+continuum_generate_messages/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_generate_messages.dir/build.make continuum/CMakeFiles/continuum_generate_messages.dir/build
+.PHONY : continuum_generate_messages/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_gennodejs.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_gennodejs.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_gennodejs.dir/rule
+
+# Convenience name for target.
+continuum_gennodejs: continuum/CMakeFiles/continuum_gennodejs.dir/rule
+
+.PHONY : continuum_gennodejs
+
+# fast build rule for target.
+continuum_gennodejs/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_gennodejs.dir/build.make continuum/CMakeFiles/continuum_gennodejs.dir/build
+.PHONY : continuum_gennodejs/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/_continuum_generate_messages_check_deps_GoTo.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/_continuum_generate_messages_check_deps_GoTo.dir/rule
+.PHONY : continuum/CMakeFiles/_continuum_generate_messages_check_deps_GoTo.dir/rule
+
+# Convenience name for target.
+_continuum_generate_messages_check_deps_GoTo: continuum/CMakeFiles/_continuum_generate_messages_check_deps_GoTo.dir/rule
+
+.PHONY : _continuum_generate_messages_check_deps_GoTo
+
+# fast build rule for target.
+_continuum_generate_messages_check_deps_GoTo/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/_continuum_generate_messages_check_deps_GoTo.dir/build.make continuum/CMakeFiles/_continuum_generate_messages_check_deps_GoTo.dir/build
+.PHONY : _continuum_generate_messages_check_deps_GoTo/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_generate_messages_eus.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_generate_messages_eus.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+continuum_generate_messages_eus: continuum/CMakeFiles/continuum_generate_messages_eus.dir/rule
+
+.PHONY : continuum_generate_messages_eus
+
+# fast build rule for target.
+continuum_generate_messages_eus/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_generate_messages_eus.dir/build.make continuum/CMakeFiles/continuum_generate_messages_eus.dir/build
+.PHONY : continuum_generate_messages_eus/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_generate_messages_nodejs.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_generate_messages_nodejs.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+continuum_generate_messages_nodejs: continuum/CMakeFiles/continuum_generate_messages_nodejs.dir/rule
+
+.PHONY : continuum_generate_messages_nodejs
+
+# fast build rule for target.
+continuum_generate_messages_nodejs/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_generate_messages_nodejs.dir/build.make continuum/CMakeFiles/continuum_generate_messages_nodejs.dir/build
+.PHONY : continuum_generate_messages_nodejs/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_geneus.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_geneus.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_geneus.dir/rule
+
+# Convenience name for target.
+continuum_geneus: continuum/CMakeFiles/continuum_geneus.dir/rule
+
+.PHONY : continuum_geneus
+
+# fast build rule for target.
+continuum_geneus/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_geneus.dir/build.make continuum/CMakeFiles/continuum_geneus.dir/build
+.PHONY : continuum_geneus/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_generate_messages_py.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_generate_messages_py.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_generate_messages_py.dir/rule
+
+# Convenience name for target.
+continuum_generate_messages_py: continuum/CMakeFiles/continuum_generate_messages_py.dir/rule
+
+.PHONY : continuum_generate_messages_py
+
+# fast build rule for target.
+continuum_generate_messages_py/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_generate_messages_py.dir/build.make continuum/CMakeFiles/continuum_generate_messages_py.dir/build
+.PHONY : continuum_generate_messages_py/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/continuum_genpy.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/continuum_genpy.dir/rule
+.PHONY : continuum/CMakeFiles/continuum_genpy.dir/rule
+
+# Convenience name for target.
+continuum_genpy: continuum/CMakeFiles/continuum_genpy.dir/rule
+
+.PHONY : continuum_genpy
+
+# fast build rule for target.
+continuum_genpy/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/continuum_genpy.dir/build.make continuum/CMakeFiles/continuum_genpy.dir/build
+.PHONY : continuum_genpy/fast
+
+# Convenience name for target.
+continuum/CMakeFiles/_continuum_generate_messages_check_deps_MotorStates.dir/rule:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 continuum/CMakeFiles/_continuum_generate_messages_check_deps_MotorStates.dir/rule
+.PHONY : continuum/CMakeFiles/_continuum_generate_messages_check_deps_MotorStates.dir/rule
+
+# Convenience name for target.
+_continuum_generate_messages_check_deps_MotorStates: continuum/CMakeFiles/_continuum_generate_messages_check_deps_MotorStates.dir/rule
+
+.PHONY : _continuum_generate_messages_check_deps_MotorStates
+
+# fast build rule for target.
+_continuum_generate_messages_check_deps_MotorStates/fast:
+	cd /home/hector/Documents/Continuum/catkin_ws/build && $(MAKE) -f continuum/CMakeFiles/_continuum_generate_messages_check_deps_MotorStates.dir/build.make continuum/CMakeFiles/_continuum_generate_messages_check_deps_MotorStates.dir/build
+.PHONY : _continuum_generate_messages_check_deps_MotorStates/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
-	@echo "... edit_cache"
-	@echo "... list_install_components"
-	@echo "... test"
 	@echo "... install/local"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... continuum_genlisp"
+	@echo "... continuum_gencpp"
+	@echo "... continuum_generate_messages_lisp"
 	@echo "... install"
+	@echo "... _continuum_generate_messages_check_deps_Reset"
+	@echo "... continuum_generate_messages_cpp"
+	@echo "... continuum_generate_messages"
+	@echo "... install/strip"
+	@echo "... continuum_gennodejs"
+	@echo "... _continuum_generate_messages_check_deps_GoTo"
+	@echo "... edit_cache"
+	@echo "... continuum_generate_messages_eus"
+	@echo "... continuum_generate_messages_nodejs"
+	@echo "... continuum_geneus"
+	@echo "... continuum_generate_messages_py"
+	@echo "... continuum_genpy"
+	@echo "... _continuum_generate_messages_check_deps_MotorStates"
+	@echo "... test"
 .PHONY : help
 
 

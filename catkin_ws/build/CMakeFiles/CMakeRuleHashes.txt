@@ -2,6 +2,9 @@
 6f4aab5df5241898ea78c3b855e2b826 /home/hector/Documents/Continuum/catkin_ws/devel/include/aruco_msgs/Marker.h
 b8bd2a5a7479901bae6ea4c6ee565562 /home/hector/Documents/Continuum/catkin_ws/devel/include/aruco_msgs/MarkerArray.h
 649e831b7c9241c3bcc55bbb72a1377a /home/hector/Documents/Continuum/catkin_ws/devel/include/aruco_ros/ArucoThresholdConfig.h
+72bc41ada76a9b258f4f0eab28d40d78 /home/hector/Documents/Continuum/catkin_ws/devel/include/continuum/GoTo.h
+ad2cd2e0ecdd7cbadcb80b14c17a6459 /home/hector/Documents/Continuum/catkin_ws/devel/include/continuum/MotorStates.h
+d5ae5872897a6e967cd948801067c81a /home/hector/Documents/Continuum/catkin_ws/devel/include/continuum/Reset.h
 1b26cb7b0702025b7ce210be4bf5b619 /home/hector/Documents/Continuum/catkin_ws/devel/include/openhand_node/HoldServos.h
 4b640cb70b49e692882a685adf644cc5 /home/hector/Documents/Continuum/catkin_ws/devel/include/openhand_node/MoveServos.h
 71760909e3ef65705b204f3de5f20c82 /home/hector/Documents/Continuum/catkin_ws/devel/include/openhand_node/OperatingMode.h
@@ -13,6 +16,10 @@ d721283f7f2f3a895a54576ca232b830 /home/hector/Documents/Continuum/catkin_ws/deve
 7968ea15e9e94c1f18bdfbe5a887530b /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/aruco_msgs/msg/_Marker.py
 0b141a37aabc39ff1f8a6d51b1826078 /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/aruco_msgs/msg/_MarkerArray.py
 0a194a47ae6a51753bb2d18de6dffe13 /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/aruco_msgs/msg/__init__.py
+e7d20eef5abd4cc68a4aaebba3579905 /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/continuum/srv/_GoTo.py
+857f56ddfa376ed126a368dac4d36b97 /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/continuum/srv/_MotorStates.py
+e1b330eee85b920fc986ed0dea4aaf79 /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/continuum/srv/_Reset.py
+d0506c5a7b31a5a236c981b33e6b164a /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/continuum/srv/__init__.py
 2cba7e28d5654b13bd960eaa0415772e /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/openhand_node/srv/_HoldServos.py
 23bd04c3ded7adf7a404820b4732f243 /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/openhand_node/srv/_MoveServos.py
 adac849704b8cf24a393f2c56e47dd62 /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/openhand_node/srv/_OperatingMode.py
@@ -24,6 +31,9 @@ aaa2e719b759acff14a10da42d8cc3a3 /home/hector/Documents/Continuum/catkin_ws/deve
 455359f00a3cc210a1a5888c775f0f2b /home/hector/Documents/Continuum/catkin_ws/devel/lib/python2.7/dist-packages/openhand_node/srv/__init__.py
 dae43ff12cf7ef1f73e8f7d94f64bf5b /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/aruco_msgs/msg/Marker.lisp
 924a33e8437752316df9e754e9ccf0c1 /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/aruco_msgs/msg/MarkerArray.lisp
+93daf48836de70e431b185e731cdc20c /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/continuum/srv/GoTo.lisp
+b66ba48395f71a5f175f77f0988f56fe /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/continuum/srv/MotorStates.lisp
+31c800d2a5f00e4276437831d8acb916 /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/continuum/srv/Reset.lisp
 78c215c195e9a43326c3de8aba37164c /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/openhand_node/srv/HoldServos.lisp
 35d19864fbe1351e36f3cfeeacd72ae3 /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/openhand_node/srv/MoveServos.lisp
 d07d40d79f66a6a1010bfc856cf83da7 /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/openhand_node/srv/OperatingMode.lisp
@@ -34,6 +44,9 @@ d07d40d79f66a6a1010bfc856cf83da7 /home/hector/Documents/Continuum/catkin_ws/deve
 b8f24ac4ad0e51c779337026ec72188e /home/hector/Documents/Continuum/catkin_ws/devel/share/common-lisp/ros/openhand_node/srv/TorqueServos.lisp
 c6d2344211379b45f0c82f471d7ca80b /home/hector/Documents/Continuum/catkin_ws/devel/share/gennodejs/ros/aruco_msgs/msg/Marker.js
 dbd170d3896a85fe337a99a806d50bdd /home/hector/Documents/Continuum/catkin_ws/devel/share/gennodejs/ros/aruco_msgs/msg/MarkerArray.js
+f7139e4252e6088853f81035d95f7adb /home/hector/Documents/Continuum/catkin_ws/devel/share/gennodejs/ros/continuum/srv/GoTo.js
+7e6a99476bf0b394cd3343d8e7f70eeb /home/hector/Documents/Continuum/catkin_ws/devel/share/gennodejs/ros/continuum/srv/MotorStates.js
+e9d2a43a466b643300b7d55872be7c32 /home/hector/Documents/Continuum/catkin_ws/devel/share/gennodejs/ros/continuum/srv/Reset.js
 37e6586b3c512ce1aab14c0388d21ae4 /home/hector/Documents/Continuum/catkin_ws/devel/share/gennodejs/ros/openhand_node/srv/HoldServos.js
 a6e2e471024fa95f863df999b04bb569 /home/hector/Documents/Continuum/catkin_ws/devel/share/gennodejs/ros/openhand_node/srv/MoveServos.js
 cd63865ed9a913234902a428e010332e /home/hector/Documents/Continuum/catkin_ws/devel/share/gennodejs/ros/openhand_node/srv/OperatingMode.js
@@ -45,6 +58,10 @@ ea6e6dc3564bd4ea45a2661d60944663 /home/hector/Documents/Continuum/catkin_ws/deve
 9faa8d5e210fea7712379d11a257cdfa /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/aruco_msgs/manifest.l
 3d3760bebe3bd25f9f3f74f940600131 /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/aruco_msgs/msg/Marker.l
 c2cba39aa4a018e41fd4b4e999606787 /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/aruco_msgs/msg/MarkerArray.l
+ddc5000b52bfe6ff31c0ade07886e709 /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/continuum/manifest.l
+a2863a11305b3887a0c94c981edfe75c /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/continuum/srv/GoTo.l
+ec6bebab6bdb0d5f5ba63a12bfbe1d96 /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/continuum/srv/MotorStates.l
+905f02ba50a1c042b2cb6564ac8c4111 /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/continuum/srv/Reset.l
 72d4f2f7f7b13e35f1ab5df2cdfa4a0b /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/openhand_node/manifest.l
 e3a32fa9559186977296ad6f295aa285 /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/openhand_node/srv/HoldServos.l
 95184df544c16d5dc941f50a84875218 /home/hector/Documents/Continuum/catkin_ws/devel/share/roseus/ros/openhand_node/srv/MoveServos.l
@@ -63,6 +80,14 @@ c738c65452f5d66f9546c9b12ab8bb9e aruco_ros/aruco_msgs/CMakeFiles/_aruco_msgs_gen
 397942b8f7e0d14c333ddab77b68c7d8 aruco_ros/aruco_msgs/CMakeFiles/aruco_msgs_generate_messages_nodejs
 397942b8f7e0d14c333ddab77b68c7d8 aruco_ros/aruco_msgs/CMakeFiles/aruco_msgs_generate_messages_py
 f0b814fae0ad35dcf7c3cbb9138c8dce aruco_ros/aruco_ros/CMakeFiles/aruco_ros_gencfg
+2b4bb5bdfc02bf9fb40080aab02beb5f continuum/CMakeFiles/_continuum_generate_messages_check_deps_GoTo
+693c15f044190f0eba447532fb0f2614 continuum/CMakeFiles/_continuum_generate_messages_check_deps_MotorStates
+6998083d30876eebc0070d229dec4d32 continuum/CMakeFiles/_continuum_generate_messages_check_deps_Reset
+fbd32567a1150ed00a76e59aa45f04d0 continuum/CMakeFiles/continuum_generate_messages_cpp
+fbd32567a1150ed00a76e59aa45f04d0 continuum/CMakeFiles/continuum_generate_messages_eus
+fbd32567a1150ed00a76e59aa45f04d0 continuum/CMakeFiles/continuum_generate_messages_lisp
+fbd32567a1150ed00a76e59aa45f04d0 continuum/CMakeFiles/continuum_generate_messages_nodejs
+fbd32567a1150ed00a76e59aa45f04d0 continuum/CMakeFiles/continuum_generate_messages_py
 5822ed0164b14e3d5d208247f609ba97 openhand_node/CMakeFiles/_openhand_node_generate_messages_check_deps_HoldServos
 fe67571b17d30a9d4791fe79f12d94ec openhand_node/CMakeFiles/_openhand_node_generate_messages_check_deps_MoveServos
 23fb19789369f0e0129e7d4db68b994b openhand_node/CMakeFiles/_openhand_node_generate_messages_check_deps_OperatingMode

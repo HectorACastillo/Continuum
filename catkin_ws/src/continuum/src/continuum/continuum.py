@@ -37,7 +37,7 @@ import matplotlib.pyplot as plt
 
 class Continuum(OpenHand):
 
-	def __init__(self,port="COM8",motor_assignments=[2,3,4],dyn_model="RX",naturalLength=1.0,radius=0.026,tendon_randian_offsets=[0,4*np.pi/3,2*np.pi/3],
+	def __init__(self,port='/dev/ttyUSB0',motor_assignments=[2,3,4],dyn_model="RX",naturalLength=1.0,radius=0.026,tendon_randian_offsets=[0,4*np.pi/3,2*np.pi/3],
 	            pulley_radii=[0.021,0.021,0.021],motor_zeros=[0.5,0.5,0.5],motor_ranges=[5.4*np.pi,5.4*np.pi,5.4*np.pi],runTuning=False):
 
 		self.num_motors = len(motor_assignments)
@@ -49,7 +49,7 @@ class Continuum(OpenHand):
 		self.motor_ranges = np.transpose(np.array([motor_ranges])) # 3x1 # radians of rotation from 0.0 to 1.0 in the Operable Region Mapping
 
 		self.motor_states = np.copy(self.motor_zeros) # 3x1 # Operable Region Mapping
-		self.rt_state = (0,0) # end effector state in rho-theta space
+		self.setpoint = (0,0) # end effector state in rho-theta space
 
 		self.cartesian_state_actual = None
 
@@ -57,6 +57,7 @@ class Continuum(OpenHand):
 		self.motorMin = [0.05,0.05,0.05] # safety limits in the OpenHand Mapping
 		self.motorMax = [0.95,0.95,0.95] # safety limits in the OpenHand Mapping
 
+		print(port)
 		OpenHand.__init__(self,port,motor_assignments,dyn_model)
 
 		if runTuning:
@@ -129,7 +130,7 @@ class Continuum(OpenHand):
 		print(self.motor_zeros)
 		res = self.moveMotors([0,1,2],self.motor_zeros)
 		if res:
-			self.rt_state = (0,0)
+			self.setpoint = (0,0)
 			
 		print("Done!")
 
@@ -140,52 +141,25 @@ class Continuum(OpenHand):
 		setpts = np.copy(self.motor_zeros) - np.divide(Motor_deltas,self.motor_ranges) # 3x1
 		return setpts
 	
-	def goto(self,rho,theta,speed=0.01,K=1.0,error_accept=(0.01, 0.063),_open=True,printout=True):
+	def goto(self,rho,theta,speed=0.01,K=1.0,error_accept=(0.01, 0.063),printout=True):
 
-		if _open:
-			'''
-			Uses the inverse kinematics to determine motor position for a given rho and theta
-			'''
-			setpts = self.inverse(rho, theta) # 3x1
+		'''
+		Uses the inverse kinematics to determine motor position for a given rho and theta
+		Open-loop position control
+		'''
+		setpts = self.inverse(rho, theta) # 3x1
 
-			if printout:
-				print("Moving to motor state")
-				print(setpts)
+		if printout:
+			print("Moving to motor state")
+			print(setpts)
 
-			res = self.moveMotors([0,1,2],setpts,speed,printout=printout)
-			if res:
-				self.rt_state = (rho, theta) # TODO: figure out if I need this
+		res = self.moveMotors([0,1,2],setpts,speed,printout=printout)
+		if res:
+			self.setpoint = (rho, theta) # TODO: figure out if I need this
 
-			if printout:
-				print("Done!")
+		if printout:
+			print("Done!")
 
-		else:
-			'''
-			The missile knows where it is becuase it knows where it isn't.
-			'''
-			if self.cartesian_state_actual is None:
-				print("No feedback - running open loop")
-				self.goto(rho,theta,speed=speed,K=K,error_accept=error_accept,_open=True,printout=printout)
-				return 
-
-			rho_actual, theta_actual = self.XYZ2RT(self.cartesian_state_actual)
-
-			error = np.transpose(np.array([[rho-rho_actual, theta-theta_actual]])) # 2x1
-
-			if error[0] < error_accept[0] and error[1] < error_accept[1]:
-				if printout:
-					print("Done!")
-				return
-
-			else:
-				J = self.getJacobian(rho_actual, theta_actual) # 3x2
-				d_setpts = np.dot(J, error) # 3x1
-
-				res = self.moveMotors([0,1,2],np.add(self.motor_states,K*d_setpts),speed=speed,oride=True,printout=printout)
-				if res:
-					self.rt_state = (rho, theta) # TODO: figure out if I need this
-
-				self.goto(rho_desired,theta_desired,speed=speed,K=K,error_accept=error_accept,_open=_open,printout=printout)
 		
 	def poseCallback(self, data):
 		self.cartesian_state_actual = np.reshape(np.array([data.pose.position.x,data.pose.position.y,data.pose.position.z]),(3,1)) # 3x1
@@ -262,7 +236,17 @@ class Continuum(OpenHand):
 		for i in range(self.num_motors):
 			print(self.readMotor(i))
 
-	def followTrajectory(self, rhos, thetas, speed=0.01, K=1.0, _open=True):
+	def getSetpoint(self):
+		return self.setpoint
+
+	def getSetpointCartesian(self):
+		rho,theta = self.setpoint
+		if rho == 0:
+			return (0,0,self.naturalLength)
+		x,y,z = self.RT2XYZ(np.array([[rho]]), np.array([[theta]]))
+		return (x,y,z) 
+
+	def followTrajectory(self, rhos, thetas, speed=0.01, K=1.0):
 
 		print("Starting trajectory...")
 		bar = progressbar.ProgressBar(maxval=rhos.size, \
@@ -271,7 +255,7 @@ class Continuum(OpenHand):
 
 		print("Starting trajectory...")
 		for i in range(rhos.size):
-			self.goto(rhos[i],thetas[i],speed=speed,K=K,_open=_open,printout=False)
+			self.goto(rhos[i],thetas[i],speed=speed,K=K,printout=False)
 			bar.update(i+1)
 		bar.finish
 		print("Done!")
@@ -310,8 +294,8 @@ class Continuum(OpenHand):
 
 	def getJacobian(self,rho,theta,d_rho=0.0001,d_theta=0.0001):
 
-		J = np.array([(self.inverse(rho,theta)-self.inverse(rho+d_rho,theta))/d_rho,(self.inverse(rho,theta)-self.inverse(rho,theta+d_theta))/d_theta]) # 3x2
-		return J
+		J = np.array([(self.inverse(rho+d_rho,theta)-self.inverse(rho,theta))/d_rho,(self.inverse(rho,theta+d_theta)-self.inverse(rho,theta))/d_theta]) # 3x2
+		return J.transpose()[0]
 
 	def RT2XYZ(self,rhos,thetas,nl=None):
 		'''
@@ -349,7 +333,7 @@ class Continuum(OpenHand):
 		x = cartesian[0,0]
 		y = cartesian[1,0]
 		z = cartesian[2,0]
-		theta = np.atan(y/x)
+		theta = np.arctan2(y,x)
 
 		# get linear interpolation because analytical solution may not be possible
 		rhos_interp  = np.linspace(0.0001,np.pi/(2*self.naturalLength),num=100) # 1x100
@@ -399,7 +383,7 @@ class Continuum(OpenHand):
 		'''
 		plot the position of the end effector in cartesian space
 		'''
-		rho, theta = self.rt_state
+		rho, theta = self.setpoint
 		rho = max(rho, 0.0001) # avoid division by zero in the transform
 		x,y,z, = self.RT2XYZ(rho, theta)
 		self.plotXYZ(x,y,z,c='cyan',ax=ax)
@@ -408,7 +392,7 @@ class Continuum(OpenHand):
 		'''
 		plot a representation of hte robot arm in zartesian space
 		'''
-		rho, theta = self.rt_state
+		rho, theta = self.setpoint
 		rho = max(rho, 0.0001) # avoid division by zero in the transform
 		nl = np.linspace(0,self.naturalLength,num=100)
 		x,y,z = self.RT2XYZ(rho,theta,nl=nl)
@@ -418,7 +402,7 @@ class Continuum(OpenHand):
 
 if __name__ == '__main__':
 
-	Continuum0 = Continuum(port='COM8',motor_assignments=[2,3,4],naturalLength=0.94,runTuning=False)
+	Continuum0 = Continuum(port='/dev/ttyUSB0',motor_assignments=[2,3,4],naturalLength=0.94,runTuning=False)
 
 	print("Starting session")
 	looping = True
@@ -437,14 +421,9 @@ if __name__ == '__main__':
 			rho = float(input("Enter rho: "))
 			theta = float(input("Enter theta: "))
 			speed = 0.01
-			_open = False
 			if "-s" in command:
 				speed = float(input("Enter speed: "))
-			if "-o" in command:
-				_open = True
-			if "-c" in command:
-				_open = False
-			Continuum0.goto(rho,theta,speed=speed,_open=_open)
+			Continuum0.goto(rho,theta,speed=speed)
 
 		elif "reset" in command:
 			Continuum0.reset()

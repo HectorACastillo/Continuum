@@ -3,6 +3,8 @@
 import rospy
 from geometry_msgs.msg import Pose, PoseStamped
 import time
+import geometry_msgs
+import tf2_ros
 
 base_top_pose = None
 base_left_pose = None
@@ -39,7 +41,7 @@ def continuum_base_tracker():
             base_pose.header.frame_id = base_top_pose.header.frame_id
 
             base_pose.pose.position.x = (base_top_pose.pose.position.x+base_left_pose.pose.position.x+base_right_pose.pose.position.x)/3
-            base_pose.pose.position.y = (base_left_pose.pose.position.y+base_right_pose.pose.position.y)/2
+            base_pose.pose.position.y = (base_left_pose.pose.position.y+base_right_pose.pose.position.y)/2 - 0.1
             base_pose.pose.position.z = (base_top_pose.pose.position.z+base_left_pose.pose.position.z+base_right_pose.pose.position.z)/3 + 0.108
             base_pose.pose.orientation = base_top_pose.pose.orientation
 
@@ -50,7 +52,27 @@ def continuum_base_tracker():
     
             # rospy.loginfo(base_pose)
             pub.publish(base_pose)
+            handle_base_pose(base_pose)
+
         rate.sleep()
+
+def handle_base_pose(base_pose):
+    
+    br = tf2_ros.TransformBroadcaster()
+    t = geometry_msgs.msg.TransformStamped()
+
+    t.header.stamp = rospy.Time.now()
+    t.header.frame_id = base_pose.header.frame_id
+    t.child_frame_id = "continuum_base_frame"
+    t.transform.translation.x = base_pose.pose.position.x
+    t.transform.translation.y = base_pose.pose.position.y
+    t.transform.translation.z = base_pose.pose.position.z
+    t.transform.rotation.x = base_pose.pose.orientation.x
+    t.transform.rotation.y = base_pose.pose.orientation.y
+    t.transform.rotation.z = base_pose.pose.orientation.z
+    t.transform.rotation.w = base_pose.pose.orientation.w
+
+    br.sendTransform(t)
 
 
 if __name__ == '__main__':

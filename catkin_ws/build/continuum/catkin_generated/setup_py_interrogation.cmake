@@ -1,0 +1,7 @@
+set(continuum_SETUP_PY_SETUP_MODULE "distutils.core")
+set(continuum_SETUP_PY_VERSION "1.0.0")
+set(continuum_SETUP_PY_SCRIPTS "")
+set(continuum_SETUP_PY_PACKAGES "continuum")
+set(continuum_SETUP_PY_PACKAGE_DIRS "src/continuum")
+set(continuum_SETUP_PY_MODULES "")
+set(continuum_SETUP_PY_MODULE_DIRS "")
